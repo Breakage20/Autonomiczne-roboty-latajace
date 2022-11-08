@@ -16,7 +16,7 @@ WORKDIR /root/tello_ws/src
 RUN git clone https://github.com/clydemcqueen/tello_ros.git
 RUN git clone https://github.com/ptrmu/ros2_shared.git
 RUN git clone https://github.com/ptrmu/fiducial_vlam.git
-
+RUN git clone https://github.com/lapo5/ROS2-Aruco-TargetTracking
 WORKDIR /root/tello_ws
 # Clone models
 WORKDIR /root/.gazebo/
