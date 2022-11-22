@@ -17,15 +17,18 @@ RUN git clone https://github.com/clydemcqueen/tello_ros.git
 RUN git clone https://github.com/ptrmu/ros2_shared.git
 RUN git clone https://github.com/ptrmu/fiducial_vlam.git
 RUN git clone https://github.com/lapo5/ROS2-Aruco-TargetTracking
-WORKDIR /root/tello_ws
-# Clone models
-WORKDIR /root/.gazebo/
-RUN git clone https://github.com/osrf/gazebo_models.git
-RUN mv gazebo_models models
-# Build
+RUN git clone https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco
 WORKDIR /root/tello_ws
 RUN . /opt/ros/foxy/setup.sh && \
     colcon build --symlink-install
+# Clone models
+WORKDIR /root/.gazebo/
+COPY markers/. /root/.gazebo/models
+# Build
+WORKDIR /root/tello_ws/src/tello_ros/tello_gazebo/worlds
+RUN rm simple.world
+COPY simple.world .
+WORKDIR /root/tello_ws
 # Add sourcing to bashrc
 RUN echo "source /opt/ros/foxy/setup.sh" >> ~/.bashrc
 RUN echo "source /root/tello_ws/install/setup.bash" >> ~/.bashrc
