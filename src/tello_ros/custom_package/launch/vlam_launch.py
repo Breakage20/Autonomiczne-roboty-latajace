@@ -33,9 +33,9 @@ def generate_launch_description():
         # Load and publish a known map
         Node(package='fiducial_vlam', executable='vmap_main', output='screen',
              name='vmap_main', parameters=[{
-                'publish_tfs': 1,  # Publish marker /tf
+                # 'publish_tfs': 1,  # Publish marker /tf
                 'marker_length': 0.1778,  # Marker length
-                'marker_map_load_full_filename': map_path,  # Load a pre-built map from disk
+                # 'marker_map_load_full_filename': map_path,  # Load a pre-built map from disk
                 'make_not_use_map': 0}]),  # Don't save a map to disk
 
         # Joystick driver, generates /namespace/joy messages
@@ -61,7 +61,7 @@ def generate_launch_description():
             # Localize this drone against the map
             Node(package='fiducial_vlam', executable='vloc_main', output='screen',
                  name='vloc_main', namespace=namespace, parameters=[{
-                    'publish_tfs': 1,
+                    # 'publish_tfs': 1,
                     'base_frame_id': 'base_link' + suffix,
                     't_camera_base_z': -0.035,
                     'camera_frame_id': 'camera_link' + suffix}]),
