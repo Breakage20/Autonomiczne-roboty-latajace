@@ -41,17 +41,17 @@ class MinimalSubscriber(Node):
 
             # Turtle only exists in 2D, thus we get x and y translation
             # coordinates from the message and set the z coordinate to 0
-            t.transform.translation.x = msg.poses[idx].position.x
+            t.transform.translation.x = msg.poses[idx].position.z
             t.transform.translation.y = msg.poses[idx].position.y
-            t.transform.translation.z = msg.poses[idx].position.z
+            t.transform.translation.z = msg.poses[idx].position.x
 
             # For the same reason, turtle can only rotate around one axis
             # and this why we set rotation in x and y to 0 and obtain
             # rotation in z axis from the message
             # q = quaternion_from_euler(0, 0, msg.theta)
-            t.transform.rotation.x = msg.poses[idx].orientation.x
-            t.transform.rotation.y = msg.poses[idx].orientation.y
-            t.transform.rotation.z = msg.poses[idx].orientation.z
+            t.transform.rotation.x = float(0)
+            t.transform.rotation.y = float(0)
+            t.transform.rotation.z = msg.poses[idx].orientation.x
             t.transform.rotation.w = msg.poses[idx].orientation.w
 
             # Send the transformation
