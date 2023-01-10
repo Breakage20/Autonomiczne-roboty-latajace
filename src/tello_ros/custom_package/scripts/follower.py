@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import rclpy
 from rclpy.node import Node
 from ros2_aruco_interfaces.msg import ArucoMarkers

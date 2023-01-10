@@ -82,6 +82,8 @@ install(
 ## Install Python scripts
 install(
   PROGRAMS src/inject_entity.py
+  PROGRAMS scripts/follower.py
+  PROGRAMS scripts/aruco_subscriber.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -90,3 +92,4 @@ install(
 #=============
 
 ament_package()
+

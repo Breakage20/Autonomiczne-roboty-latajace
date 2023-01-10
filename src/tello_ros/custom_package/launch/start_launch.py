@@ -40,8 +40,8 @@ def generate_launch_description():
         Node(package='tello_driver', executable='tello_joy_main', output='screen',
              namespace=ns),
         Node(package='ros2_aruco', executable='aruco_node', output='screen'),
-        TimerAction(period=5.0, actions=[Node(package='rviz2', executable='rviz2', name="rviz2", arguments=['-d', str(rviz_config)])])
-        
+        Node(package='tello_custom', executable='aruco_subscriber.py', output='screen'),
+        TimerAction(period=5.0, actions=[Node(package='rviz2', executable='rviz2', name="rviz2", arguments=['-d', str(rviz_config)])]),
         ])
     
     
