@@ -22,7 +22,8 @@ class Follower(Node):
         self.timer = self.create_timer(0.05, self.check_for_new_message)
         self.move_cmd=Twist()
         self.last_received_message_time=0
-        self.pid = PID()
+        self.pid_lin = PID(P=0.5, I=0.0, D=0.0)
+        self.pid_ang = PID(P=0.5, I=0.0, D=0.0)
     def check_for_new_message(self):
         # This function gets called every second (because we set the timer to 1.0 seconds)
         if time.time() - self.last_received_message_time > 0.05:
@@ -38,11 +39,13 @@ class Follower(Node):
 
         for idx, id in enumerate(msg.marker_ids):
             if (msg.poses[idx].position.x != 0):
-                self.velx=self.pid.update(msg.poses[idx].position.x)
+                self.velx=self.pid_lin.update(msg.poses[idx].position.x)
             if (msg.poses[idx].position.y != 0):
-                self.vely=self.pid.update(msg.poses[idx].position.y)
+                self.vely=self.pid_lin.update(msg.poses[idx].position.y)
             if (msg.poses[idx].position.z != 0.5):
-                self.velz=self.pid.update(-(msg.poses[idx].position.z - 0.5))
+                self.velz=self.pid_lin.update(-(msg.poses[idx].position.z - 0.5))
+            if (msg.poses[idx].orientation.z != 0.0):
+                self.velw=self.pid_ang.update(-(msg.poses[idx].orientation.z))
 
             if(0.48<msg.poses[idx].position.z<0.52):
                 self.move_cmd.linear.x = float(0)
@@ -61,6 +64,12 @@ class Follower(Node):
             else:
                 self.move_cmd.linear.z = self.vely
                 print("korekta Wysokosci")
+            
+            if(abs(msg.poses[idx].orientation.z)<0.02):
+                self.move_cmd.angular.z = float(0)
+            else:
+                self.move_cmd.angular.z = self.velw
+                print('krzywo')
 
 
         if(time.time() - self.last_received_message_time < 0.05):
