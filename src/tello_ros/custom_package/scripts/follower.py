@@ -6,6 +6,8 @@ from ros2_aruco_interfaces.msg import ArucoMarkers
 from geometry_msgs.msg import Twist
 import numpy as np
 import time
+from pid import PID
+
 class Follower(Node):
     def __init__(self):
         super().__init__('follower')
@@ -20,6 +22,7 @@ class Follower(Node):
         self.timer = self.create_timer(0.05, self.check_for_new_message)
         self.move_cmd=Twist()
         self.last_received_message_time=0
+        self.pid = PID()
     def check_for_new_message(self):
         # This function gets called every second (because we set the timer to 1.0 seconds)
         if time.time() - self.last_received_message_time > 0.05:
@@ -34,52 +37,29 @@ class Follower(Node):
         self.last_received_message_time = time.time()
 
         for idx, id in enumerate(msg.marker_ids):
-            if(abs(msg.poses[idx].position.x)>self.max_speed):
-                if (msg.poses[idx].position.x>0):
-                    self.velx=self.max_speed
-                else:
-                    self.velx=-self.max_speed
-            else:
-                self.velx=msg.poses[idx].position.x
+            if (msg.poses[idx].position.x != 0):
+                self.velx=self.pid.update(msg.poses[idx].position.x)
+            if (msg.poses[idx].position.y != 0):
+                self.vely=self.pid.update(msg.poses[idx].position.y)
+            if (msg.poses[idx].position.z != 0.5):
+                self.velz=self.pid.update(-(msg.poses[idx].position.z - 0.5))
 
-            if(abs(msg.poses[idx].position.y)>self.max_speed):
-                if (msg.poses[idx].position.y>0):
-                    self.vely=self.max_speed
-                else:
-                    self.vely=-self.max_speed
-            else:
-                self.vely=msg.poses[idx].position.y
-
-            if(abs(msg.poses[idx].position.z)>self.max_speed):
-                if (msg.poses[idx].position.z>0):
-                    self.velz=self.max_speed
-                else:
-                    self.velz=-self.max_speed
-            else:
-                self.velz=msg.poses[idx].position.z
-
-            if(msg.poses[idx].position.z<0.5):
-                self.move_cmd.linear.x=float(0)
-                if(msg.poses[idx].position.z<0.4):
-                    self.move_cmd.linear.x = -self.velz
-                    print("korekta odleglosci")
-
+            if(0.48<msg.poses[idx].position.z<0.52):
+                self.move_cmd.linear.x = float(0)
             else:
                 self.move_cmd.linear.x = self.velz
                 print("korekta odleglosci")
            
-
             if(abs(msg.poses[idx].position.x)<0.02):
                 self.move_cmd.linear.y = float(0)
             else:
-                self.move_cmd.linear.y = -self.velx
+                self.move_cmd.linear.y = self.velx
                 print("korekta LR")
-
 
             if(abs(msg.poses[idx].position.y)<0.02):
                 self.move_cmd.linear.z = float(0)
             else:
-                self.move_cmd.linear.z = -self.vely
+                self.move_cmd.linear.z = self.vely
                 print("korekta Wysokosci")
 
 
