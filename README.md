@@ -2,11 +2,11 @@
 
 Autorzy:
 
-Błażej Gawędzki,
+Błażej Gawędzki 140348,
 
-Piotr Michałek 140 281,
+Piotr Michałek 140281,
 
-Mikołaj Piaszczyński
+Mikołaj Piaszczyński 140359
 
 Temat: **Budowa mapy otoczenia przy użyciu znaczników AruCo**
 
