@@ -1,10 +1,16 @@
 # Autonomiczne-roboty-latajace
 
 Autorzy:
-Błażej Gawędzki
-Piotr Michałek
+
+Błażej Gawędzki,
+
+Piotr Michałek,
+
 Mikołaj Piaszczyński
 
+Temat: **Budowa mapy otoczenia przy użyciu znaczników AruCo**
+
+Podczas prac nad projektem został 
 ## To build dockerfile use 
 ```
 bash build.sh
