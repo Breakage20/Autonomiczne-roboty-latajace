@@ -1,5 +1,10 @@
 # Autonomiczne-roboty-latajace
 
+Autorzy:
+Błażej Gawędzki
+Piotr Michałek
+Mikołaj Piaszczyński
+
 ## To build dockerfile use 
 ```
 bash build.sh
