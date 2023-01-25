@@ -39,11 +39,13 @@ bash open_new.sh
 ros2 launch tello_custom start_launch.py 
 bash src/tello_ros/tello_gazebo/scripts/two_drones_rc.bash 
 python3 src/tello_ros/custom_package/scripts/follower.py
-ros2 topic pub /marker_id std_msgs/msg/Int32 data:\ 0\ ```
+ros2 topic pub /marker_id std_msgs/msg/Int32 data:\ 0\ 
+```
 
 ### Start real drone - numer znacznika AruCo podawany jest jako argument w ostatniej komendzie
 ```
 ros2 launch tello_custom drone.py 
 ros2 service call /tello_action tello_msgs/TelloAction "{cmd: 'takeoff'}"
 python3 src/tello_ros/custom_package/scripts/follower.py
-ros2 topic pub /marker_id std_msgs/msg/Int32 data:\ 0\ ```
+ros2 topic pub /marker_id std_msgs/msg/Int32 data:\ 0\ 
+```
