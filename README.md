@@ -4,13 +4,18 @@ Autorzy:
 
 Błażej Gawędzki,
 
-Piotr Michałek,
+Piotr Michałek 140 281,
 
 Mikołaj Piaszczyński
 
 Temat: **Budowa mapy otoczenia przy użyciu znaczników AruCo**
 
-Podczas prac nad projektem został 
+Podczas prac nad projektem zostały zrealizowane takie zagadnienia jak:
+- zbudowanie zbudowanie work space'a dla drona w ROS2
+- umieszczenie znaczników AruCo w symulacji Gazeboo
+- zbudowanie node'a do odczytu wartości ze znaczników AruCo
+- wizualizacja TF-ów znaczników oraz drona.
+- odczyt pozycji i orientacji znacznika względem drona
 ## To build dockerfile use 
 ```
 bash build.sh
