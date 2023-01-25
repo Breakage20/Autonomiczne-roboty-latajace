@@ -2,7 +2,7 @@
 
 Autorzy:
 
-Błażej Gawędzki 140348,
+Błażej Gawęcki 140348,
 
 Piotr Michałek 140281,
 
