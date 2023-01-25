@@ -16,6 +16,7 @@ Podczas prac nad projektem zostały zrealizowane takie zagadnienia jak:
 - zbudowanie node'a do odczytu wartości ze znaczników AruCo
 - wizualizacja TF-ów znaczników oraz drona.
 - odczyt pozycji i orientacji znacznika względem drona
+- szukanie i śledzenie zadanego znacznika
 ## To build dockerfile use 
 ```
 bash build.sh
