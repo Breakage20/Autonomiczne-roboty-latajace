@@ -2,21 +2,24 @@
 
 Autorzy:
 
-Błażej Gawędzki 140348,
+Błażej Gawędzki,
 
-Piotr Michałek 140281,
+Piotr Michałek 140 281,
 
-Mikołaj Piaszczyński 140359
+Mikołaj Piaszczyński
 
 Temat: **Budowa mapy otoczenia przy użyciu znaczników AruCo**
 
 Podczas prac nad projektem zostały zrealizowane takie zagadnienia jak:
-- zbudowanie zbudowanie work space'a dla drona DJI Ryze Tello w ROS2
+- zbudowanie zbudowanie work space'a dla drona w ROS2
 - umieszczenie znaczników AruCo w symulacji Gazeboo
 - zbudowanie node'a do odczytu wartości ze znaczników AruCo
 - wizualizacja TF-ów znaczników oraz drona.
-- odczyt pozycji i orientacji znacznika względem drona
-- szukanie i śledzenie zadanego znacznika
+- odczyt pozycji i orientacji znaczników względem drona
+- lot drona do znacznika na podstawie odczytu pozycji i orientacji znacznika
+- zadawanie prędkości liniowych i obrotowych za pomocą regulatora PID
+- odnajdywanie obiektów zgodnie z poleceniami operatora
+
 ## To build dockerfile use 
 ```
 bash build.sh
